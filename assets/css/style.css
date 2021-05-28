@@ -1,7 +1,7 @@
 :root {
 	/*Warna utama*/
 	--p_black: #272838;
-	--p_red: #d44a4a;
+	--p_red: #e65353;
 	--p_blue: #5775ff;
 	--p_green: #31c48f;
 
@@ -90,9 +90,36 @@ body {
 }
 
 /*
- * css buttons start end
+ * css buttons end
  */
 
+/*
+ * css alert start
+ */
+
+.danger {
+	display: block;
+	padding: 10px;
+	background: var(--p_red);
+	color: var(--white);
+	margin-bottom: 15px;
+	font-size: 13px;
+	border-radius: 6px;
+}
+
+.succes {
+	display: block;
+	padding: 10px;
+	background: var(--p_green);
+	color: var(--white);
+	margin-bottom: 15px;
+	font-size: 13px;
+	border-radius: 6px;
+}
+
+/*
+ * css alert end
+ */
 
 /*
  * css navbar start

@@ -91,7 +91,7 @@
 								<?php
 									$i = 1;
 
-									$sql_pendaftar = mysqli_query($koneksi, "SELECT * FROM pendaftar LIMIT 5 ");
+									$sql_pendaftar = mysqli_query($koneksi, "SELECT * FROM pendaftar ORDER BY tgl_mendaftar DESC LIMIT 5 ");
 									$jml_data = mysqli_num_rows($sql_pendaftar);
 									while($row = mysqli_fetch_assoc($sql_pendaftar)) { 
 								?>
@@ -114,8 +114,8 @@
 										<?php } ?>
 
 									<td>
-										<a href="#" class="edit"><i class="fas fa-pen"></i></a>
-										<a href="#" class="del"><i class="fas fa-trash"></i></a>
+										<a href="form-pendaftaran.php?type=edit&nisn=<?php echo $row['NISN']; ?>" class="edit"><i class="fas fa-pen"></i></a>
+										<a href="script/pendaftar-delete-data.php?nisn=<?php echo $row['NISN']; ?>" class="del" onclick="return confirm('Konfirmasi hapus data?')"><i class="fas fa-trash"></i></a>
 									</td>
 								</tr>
 								<?php $i++; } ?>

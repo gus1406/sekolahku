@@ -1,50 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
-	<!--main style-->
-	<link rel="stylesheet" href="assets/css/style.css" type="text/css">
-	<!--csslibs-->
-	<link rel="stylesheet" href="assets/css/csslibs.css" type="text/css">
-	<!--font-->
-	<link rel="preconnect" href="https://fonts.gstatic.com">
-	<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-	<!--fontawesome-->
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
-
-	<title>Pendaftaran - Sekolahku</title>
-</head>
-<body>
-
-<header>
-	<nav class="nav">
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<div class="nav-nav">
-						<div class="nav-title">
-							<h1>
-								<a href="#">Sekolahku</a>
-								<span class="menu-toggle menu-open" id="OpenMenu" onclick="OpenMenu()"><i class="fas fa-bars"></i></span>
-								<span class="menu-toggle menu-close" id="CloseMenu" onclick="CloseMenu()"><i class="fas fa-times"></i></span>
-							</h1>
-						</div>
-						<div class="nav-menu" id="NavMenu">
-							<a href="index.html"><i class="fas fa-home"></i> Dashboard</a>
-							<a href="pendaftaran.html"><i class="fas fa-user-friends"></i> Pendaftaran</a>
-							<a href="petugas.html"><i class="fas fa-users-cog"></i> Petugas</a>
-						</div>
-						<div class="nav-admin-name">
-							<p><span>Hallo, Agus Darma</span> <a href="#">Logout <i class="fas fa-sign-out-alt"></i></a></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</nav>
-</header>
+<?php include 'header.php'; ?>
 
 <main>
 	<section class="page-inf">
@@ -56,7 +10,7 @@
 							<p>Pendaftaran</p>
 						</div>
 						<div class="pi-right">
-							<p><a href="#">Dashboard</a> / <span>Pendaftaran</span></p>
+							<p><a href="index.php">Dashboard</a> / <span>Pendaftaran</span></p>
 						</div>
 					</div>
 				</div>
@@ -68,15 +22,22 @@
 			<div class="row">
 				<div class="col-12">
 					<div class="table-container">
-						<h3>Data pendaftar</h3>
-						<p>Berikut adalah data calon siswa baru yang mendaftar.</p>
+						<?php if (isset($_GET['s'])) { $s = $_GET['s']; ?>
+							<h3>Pencarian anda untuk <?php echo "'$s'" ?></h3>
+							<p>Berikut adalah hasil dari nama yang anda cari</p>
+						<?php } else { ?>
+							<h3>Data pendaftar</h3>
+							<p>Berikut adalah data calon siswa yang mendaftar.</p>
+						<?php } ?>
 
 						<span style="display: block; margin-bottom: 15px;">
-							<a href="form-pendaftaran.html" class="btn btn-medium blue">Data Baru <i class="fas fa-plus"></i></a>
+							<a href="form-pendaftaran.php?type=add" class="btn btn-medium blue">Data Baru <i class="fas fa-plus"></i></a>
 
 							<span>
-								<input type="text" name="search" class="s-input" placeholder="Search...">
-								<button type="submit" class="s-button"><i class="fas fa-search"></i></button>
+								<form action="script/search-data.php" method="post" style="display: inline-block;">
+									<input type="text" name="search" class="s-input" placeholder="Cari nama...">
+									<button type="submit" class="s-button"><i class="fas fa-search"></i></button>
+								</form>
 							</span>
 						</span>
 						
@@ -91,66 +52,48 @@
 									<th>Status</th>
 									<th>Aksi</th>
 								</tr>
+
+								<?php
+									$i = 1;
+
+									if (isset($_GET['s'])) {
+										$s = $_GET['s'];
+										$sql_pendaftar = mysqli_query($koneksi, "SELECT * FROM pendaftar WHERE nama LIKE '%$s%' ORDER BY tgl_mendaftar DESC LIMIT 5 ");
+									} else {
+										$sql_pendaftar = mysqli_query($koneksi, "SELECT * FROM pendaftar ORDER BY tgl_mendaftar DESC LIMIT 5 ");
+									}
+
+									
+									$jml_data = mysqli_num_rows($sql_pendaftar);
+									while($row = mysqli_fetch_assoc($sql_pendaftar)) { 
+								?>
 								<tr>
-									<td>1</td>
-									<td>89078768</td>
-									<td>Putu Agus Darma Putra Juniarta</td>
-									<td>Tegal Baleran</td>
-									<td>Smp Negeri 3 Tabanan</td>
+									<td><?php echo $i; ?></td>
+									<td><?php echo $row['NISN']; ?></td>
+									<td><?php echo $row['nama']; ?></td>
+									<td><?php echo $row['alamat']; ?></td>
+									<td><?php echo $row['sekolah_asal']; ?></td>
 									<td>
-										<a href="#" class="confirm">Konfirmasi Lolos</a>
-									</td>
+										<?php if ($row['keterangan'] == "pending") { ?>
+
+										<a href="script/konfirmasi-lolos.php?nisn=<?php echo $row['NISN']; ?>" class="confirm" onclick="return confirm('Konfirmasi lolos?')">Konfirmasi Lolos</a>
+										</td>
+
+										<?php } else if ($row['keterangan'] == "lolos") { ?>
+
+										<span class="lolos">Lolos seleksi</span>
+
+										<?php } ?>
+
 									<td>
-										<a href="#" class="edit"><i class="fas fa-pen"></i></a>
-										<a href="#" class="del"><i class="fas fa-trash"></i></a>
+										<a href="form-pendaftaran.php?type=edit&nisn=<?php echo $row['NISN']; ?>" class="edit"><i class="fas fa-pen"></i></a>
+										<a href="script/pendaftar-delete-data.php?nisn=<?php echo $row['NISN']; ?>" class="del" onclick="return confirm('Konfirmasi hapus data?')"><i class="fas fa-trash"></i></a>
 									</td>
 								</tr>
-								<tr>
-									<td>2</td>
-									<td>89078768</td>
-									<td>Putu Agus Darma Putra Juniarta</td>
-									<td>Tegal Baleran</td>
-									<td>Smp Negeri 3 Tabanan</td>
-									<td>
-										<a href="#" class="lolos">Lolos seleksi</a>
-									</td>
-									<td>
-										<a href="#" class="edit"><i class="fas fa-pen"></i></a>
-										<a href="#" class="del"><i class="fas fa-trash"></i></a>
-									</td>
-								</tr>
-								<tr>
-									<td>3</td>
-									<td>89078768</td>
-									<td>Putu Agus Darma Putra Juniarta</td>
-									<td>Tegal Baleran</td>
-									<td>Smp Negeri 3 Tabanan</td>
-									<td>
-										<a href="#" class="confirm">Konfirmasi Lolos</a>
-									</td>
-									<td>
-										<a href="#" class="edit"><i class="fas fa-pen"></i></a>
-										<a href="#" class="del"><i class="fas fa-trash"></i></a>
-									</td>
-								</tr>
-								<tr>
-									<td>4</td>
-									<td>89078768</td>
-									<td>Putu Agus Darma Putra Juniarta</td>
-									<td>Tegal Baleran</td>
-									<td>Smp Negeri 3 Tabanan</td>
-									<td>
-										<a href="#" class="confirm">Konfirmasi Lolos</a>
-									</td>
-									<td>
-										<a href="#" class="edit"><i class="fas fa-pen"></i></a>
-										<a href="#" class="del"><i class="fas fa-trash"></i></a>
-									</td>
-								</tr>
+								<?php $i++; } ?>
 							</table>
 						</div>
-
-						<p class="remove-margin">Menampilkan 5 dari 357 data</p>
+						<p class="remove-margin">Menampilkan <?php echo $jml_data; ?> data dari database</p>
 					</div>
 				</div>
 			</div>
@@ -158,20 +101,4 @@
 	</section>
 </main>
 
-<footer>
-	<div class="footer">
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<p>2021 © Sekolahku</p>
-				</div>
-			</div>
-		</div>
-	</div>
-</footer>		
-	
-<!--Main javascript-->
-<script src="assets/js/js.js" type="text/javascript"></script>
-
-</body>
-</html>
+<?php include 'footer.php'; ?>
