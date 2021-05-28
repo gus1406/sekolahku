@@ -1,0 +1,571 @@
+:root {
+	/*Warna utama*/
+	--p_black: #272838;
+	--p_red: #d44a4a;
+	--p_blue: #5775ff;
+	--p_green: #31c48f;
+
+	--white: #ffffff;
+
+	/*Warna shade*/
+	--grey: #e9eaeb;
+	--grey2: #d4d4d7;
+	--grey3: #bebfc3;
+	--grey4: #a9a9af;
+	--grey5: #93949c;
+	--grey6: #7d7e88;
+	--grey7: #686974;
+	--grey8: #525360;
+	--grey9: #3d3e4c;
+
+	--bg: #f4f4f4;
+}
+
+/*Class warna text*/
+.black {color: var(--p_black)}
+.red {color: var(--p_red)}
+.blue {color: var(--p_blue)}
+.green {color: var(--p_green)}
+
+body {
+	font-family: 'Poppins', sans-serif;
+	background: var(--bg);
+	color: var(--grey9);
+}
+
+/*
+ * css buttons start
+ */
+
+.btn-small {
+	display: inline-block;
+	padding: 5px 15px;
+	font-size: 12px;
+	border-radius: 5px;	
+}
+
+.btn-medium {
+	display: inline-block;
+	padding: 10px 20px;
+	font-size: 13px;
+	border-radius: 6px;
+}
+
+.btn-large {
+	display: inline-block;
+	padding: 15px 25px;
+	font-size: 14px;
+	border-radius: 7px;
+}
+
+.btn {
+	margin-bottom: 5px;
+	border: none;
+	font-family: inherit;
+	cursor: pointer;
+}
+
+.btn i {
+	margin: 0 4px;
+}
+
+.btn.black {
+	background: var(--grey9);
+	color: var(--white);
+}
+
+.btn.red {
+	background: var(--p_red);
+	color: var(--white);
+}
+
+.btn.green {
+	background: var(--p_green);
+	color: var(--white);
+}
+
+.btn.blue {
+	background: var(--p_blue);
+	color: var(--white);
+}
+
+/*
+ * css buttons start end
+ */
+
+
+/*
+ * css navbar start
+ */
+
+.nav {
+	width: 100%;
+	height: 70px;
+	background: var(--p_black);
+	color: var(--grey2);
+	display: flex;
+	align-items: center;
+}
+
+.nav-nav {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.nav-title h1 {
+	font-size: 20px;
+	margin-bottom: 0;
+}
+
+.nav-title h1 a {
+	color: inherit;
+}
+
+.nav-title .menu-toggle {
+	display: none;
+}
+
+@media (max-width: 668px) {
+	.nav-title .menu-toggle {
+		display: inline-block;
+		font-size: 16px;
+		margin-left: 10px
+	}
+
+	.nav-title .menu-toggle.menu-close {
+		display: none;
+	}
+
+	.nav-menu {
+		display: none;
+		position: absolute;
+		top: 70px;
+		background: var(--p_black);
+	}
+}
+
+.nav-menu a {
+	color: var(--grey4);
+	font-size: 14px;
+	padding: 0 10px;
+}
+
+@media (max-width: 668px) {
+	.nav-menu a {
+		display: block;
+		padding: 10px 20px;
+	}
+}
+
+.nav-menu a:hover {
+	color: var(--grey);
+}
+
+.nav-menu a i {
+	font-size: 13px;
+	margin-right: 2px;
+}
+
+.nav-admin-name p {
+	margin-bottom: 0;
+	font-size: 14px;
+}
+
+.nav-admin-name p a {
+	display: inline-block;
+	padding: 2px 10px;
+	background: var(--p_red);
+	color: var(--white);
+	border-radius: 20px;
+	font-size: 13px;
+	margin-left: 5px;
+}
+
+@media (max-width: 1068px) {
+	.nav-admin-name span {
+		display: none;
+	}
+}
+
+/*
+ * css navbar end
+ */
+
+/*
+ * css page title and breadcrumb start
+ */
+
+.page-inf {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.pi {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+@media (max-width: 468px) {
+	.pi {
+		flex-direction: column;
+	}
+}
+
+.pi-left p {
+	font-size: 16px;
+	text-transform: uppercase;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+@media (max-width: 468px) {
+	.pi-left p {
+		margin-bottom: 2px;
+	}
+}
+
+.pi-right p {
+	font-size: 14px;
+	margin-bottom: 0;
+}
+
+.pi-right p a {
+	color: var(--p_black);
+}
+
+.pi-right p span {
+	color: var(--grey4);
+}
+
+/*
+ * css page title and breadcrumb start end
+ */
+
+/*
+ * css card start
+ */
+
+.d-card {
+	width: 100%;
+	height: auto;
+	background: var(--white);
+	padding: 25px;
+	border-radius: 10px;
+	margin-bottom: 30px;
+}
+
+.d-card h2 {
+	font-size: 36px;
+	margin-bottom: 5px;
+}
+
+.d-card p.desc {
+	margin-bottom: 8px;
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.d-card p.date {
+	font-size: 12px;
+	color: var(--grey4);
+}
+
+/*
+ * css card end
+ */
+
+/*
+ * css table start
+ */
+
+.table-container {
+	background: var(--white);
+	padding: 25px;
+	border-radius: 10px;
+	margin-bottom: 30px;
+}
+
+.table-responsive {
+	overflow-x: auto;
+}	
+
+@media (max-width: 1200px) {
+	.table-container table {
+		width: 1200px !important;
+	}
+}
+
+.table-container h3 {
+	font-weight: 700;
+	font-size: 16px;
+	margin-bottom: 5px;
+}
+
+.table-container p {
+	font-size: 13px;
+	margin-bottom: 0;
+	color: var(--grey5);
+	margin-bottom: 15px;
+}
+
+.table-container .s-input {
+	padding: 10px 15px;
+	font-family: inherit;
+	font-size: 12px;
+	border-radius: 6px;
+	border: 1px solid var(--grey);
+	color: inherit;
+	outline: none;
+	transition: .3s;
+}
+
+.table-container .s-input:focus {
+	background: var(--grey);
+}
+
+.table-container .s-button {
+	display: inline-block;
+	padding: 10px;
+	margin-left: -40px;
+	font-size: 13px;
+	background: transparent;
+	border: none;
+	color: var(--grey5);
+	cursor: pointer;
+}
+
+.table-container table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+}
+
+.table-container table tr {
+	border-bottom: 1px solid var(--bg);
+}
+
+.table-container table tr th {
+	text-align: left;
+	padding: 10px 15px;
+	background: var(--grey);
+	font-size: 14px;
+	font-weight: 700;
+}
+
+.table-container table tr td {
+	text-align: left;
+	padding: 20px 15px;
+	font-size: 13px;
+}
+
+.table-container a.confirm {
+	background: var(--bg);
+	color: var(--p_blue);
+	border-radius: 15px;
+	display: inline-block;
+	padding: 4px 8px;
+	font-size: 11px;
+}
+
+.table-container a.lolos, .table-container span.lolos {
+	background: var(--bg);
+	color: var(--p_green);
+	border-radius: 15px;
+	display: inline-block;
+	padding: 4px 8px;
+	font-size: 11px;
+}
+
+.table-container a.edit {
+	display: inline-block;
+	background: var(--bg);
+	color: var(--p_blue);
+	border-radius: 4px;
+	width: 25px;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+	font-size: 11px;
+	margin-right: 2px;
+}
+
+.table-container a.del {
+	display: inline-block;
+	background: var(--bg);
+	color: var(--p_red);
+	border-radius: 4px;
+	width: 25px;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+	font-size: 11px;
+	margin-right: 5px;
+}
+
+/*
+ * css table end
+ */
+
+/*
+ * css form start
+ */
+
+.form-container {
+	background: var(--white);
+	padding: 25px;
+	border-radius: 10px;
+	margin-bottom: 30px;
+}
+
+.form-container h3 {
+	font-weight: 700;
+	font-size: 16px;
+	margin-bottom: 5px;
+}
+
+.form-container p {
+	font-size: 13px;
+	margin-bottom: 0;
+	color: var(--grey5);
+	margin-bottom: 15px;
+}
+
+.form-group {
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.form-group label {
+	display: block;
+	color: var(--grey9);
+	margin-bottom: 8px;
+	font-size: 13px;
+}
+
+.form-group input {
+	width: 100%;
+	padding: 10px 15px;
+	font-family: inherit;
+	font-size: 12px;
+	border-radius: 6px;
+	border: 1px solid var(--grey2);
+	color: inherit;
+	outline: none;
+	transition: .3s;
+	background: transparent;
+}
+
+.form-group select {
+	width: 100%;
+	padding: 10px 15px;
+	font-family: inherit;
+	font-size: 12px;
+	border-radius: 6px;
+	border: 1px solid var(--grey2);
+	color: inherit;
+	outline: none;
+	background: transparent;
+}
+
+.form-group .w-10 {width: 10%;}
+.form-group .w-20 {width: 20%;}
+.form-group .w-30 {width: 30%;}
+.form-group .w-40 {width: 40%;}
+.form-group .w-50 {width: 50%;}
+.form-group .w-60 {width: 60%;}
+.form-group .w-70 {width: 70%;}
+.form-group .w-80 {width: 80%;}
+.form-group .w-90 {width: 90%;}
+.form-group .w-100 {width: 100%;}
+
+@media (max-width: 668px) {
+	/* semua class berawalan w- pada layar 668px ke bawah, width menjadi 100% */
+	.form-group [class*="w-"] {
+		width: 100%;
+	}
+}
+
+/*
+ * css form end
+ */
+
+/*
+ * css login start
+ */
+
+.login-page {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.login-container {
+	width: 400px;
+	background: var(--white);
+	padding: 25px;
+	border-radius: 10px;
+}
+
+@media (max-width: 450px) {
+	.login-container {
+		width: 100%;
+		margin: 0 25px;
+	}
+}
+
+.login-container span.alert {
+	display: block;
+	padding: 10px;
+	font-size: 13px;
+	background: var(--p_red);
+	color: var(--white);
+	border-radius: 6px;
+	margin-bottom: 15px;
+}
+
+.login-container h3 {
+	font-size: 16px;
+	margin-bottom: 4px;
+	font-weight: 500;
+}
+
+.login-container p {
+	font-weight: 400;
+	font-size: 13px;
+	color: var(--grey5);
+	margin-bottom: 30px;
+}
+
+.login-container .show-hide-password {
+	position: absolute;
+	display: inline-block;
+	margin-left: -30px;
+	margin-top: 8px;
+	color: var(--grey5);
+	cursor: pointer;
+}
+
+/*
+ * css login end
+ */
+
+/*
+ * css footer start
+ */
+
+.footer p {
+	text-align: center;
+	margin-bottom: 25px;
+	color: var(--grey4);
+}
+
+/*
+ * css footer end
+ */
