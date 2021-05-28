@@ -58,11 +58,10 @@
 
 									if (isset($_GET['s'])) {
 										$s = $_GET['s'];
-										$sql_pendaftar = mysqli_query($koneksi, "SELECT * FROM pendaftar WHERE nama LIKE '%$s%' ORDER BY tgl_mendaftar DESC LIMIT 5 ");
+										$sql_pendaftar = mysqli_query($koneksi, "SELECT * FROM pendaftar WHERE nama LIKE '%$s%' ORDER BY tgl_mendaftar DESC ");
 									} else {
-										$sql_pendaftar = mysqli_query($koneksi, "SELECT * FROM pendaftar ORDER BY tgl_mendaftar DESC LIMIT 5 ");
+										$sql_pendaftar = mysqli_query($koneksi, "SELECT * FROM pendaftar ORDER BY tgl_mendaftar DESC ");
 									}
-
 									
 									$jml_data = mysqli_num_rows($sql_pendaftar);
 									while($row = mysqli_fetch_assoc($sql_pendaftar)) { 
